@@ -1,0 +1,1 @@
+﻿global using Checker = Infrastructure.Bcl.Validations.Check;
