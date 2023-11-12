@@ -4,6 +4,8 @@ using System.Numerics;
 
 using Infrastructure.Bcl.Validations;
 
+using Service.Infrastructure.Bcl.Results;
+
 
 namespace Infrastructure.Bcl.Results;
 

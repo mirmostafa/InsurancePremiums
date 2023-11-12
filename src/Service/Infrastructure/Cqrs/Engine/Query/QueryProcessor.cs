@@ -1,20 +1,17 @@
 ﻿using Autofac;
 
-using Infrastructure.Bcl.Validations;
 using Infrastructure.Cqrs.Models.Queries;
 
-namespace Infrastructure.Cqrs.Engine.Query;
+namespace Service.Infrastructure.Cqrs.Engine.Query;
 
 internal sealed class QueryProcessor : IQueryProcessor
 {
     private readonly ILifetimeScope _container;
 
-    public QueryProcessor(ILifetimeScope container)
-        => this._container = container;
+    public QueryProcessor(ILifetimeScope container) =>
+        this._container = container;
 
-#if !DEBUG
-        [System.Diagnostics.DebuggerStepThrough]
-#endif
+    [System.Diagnostics.DebuggerStepThrough]
     public Task<TResult> ExecuteAsync<TResult>(IQuery<TResult> query)
     {
         Checker.MustBeArgumentNotNull(query);

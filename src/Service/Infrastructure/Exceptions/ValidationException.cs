@@ -10,5 +10,5 @@ public sealed class ValidationException : ValidationExceptionBase
     {
         this.Prompt = prompt;
     }
-    public string Prompt { get; }
+    public string? Prompt { get; }
 }

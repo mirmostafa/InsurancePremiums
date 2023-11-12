@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 
 using Autofac;
 
 using Infrastructure.Cqrs.Engine.Command;
-using Infrastructure.Cqrs.Engine.Query;
 using Infrastructure.Cqrs.Models.Commands;
 using Infrastructure.Cqrs.Models.Queries;
 
-namespace Infrastructure.Cqrs;
+using Service.Infrastructure.Cqrs.Engine.Query;
+
+namespace Service.Infrastructure.Cqrs;
 
 public static class CqrsExtensions
 {

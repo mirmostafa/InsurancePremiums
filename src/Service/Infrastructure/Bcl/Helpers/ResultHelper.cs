@@ -5,6 +5,8 @@ using System.Numerics;
 using Infrastructure.Bcl.Results;
 using Infrastructure.Exceptions;
 
+using Service.Infrastructure.Bcl.Results;
+
 namespace Infrastructure.Bcl.Helpers;
 
 [DebuggerStepThrough]

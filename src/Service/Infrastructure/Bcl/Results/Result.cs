@@ -1,7 +1,8 @@
-﻿
-using System.Numerics;
+﻿using System.Numerics;
 
-namespace Infrastructure.Bcl.Results;
+using Infrastructure.Bcl.Results;
+
+namespace Service.Infrastructure.Bcl.Results;
 
 public sealed class Result(
     in bool? succeed = null,
@@ -39,18 +40,6 @@ public sealed class Result(
     /// </summary>
     /// <returns>A new instance of the Result class representing a successful operation.</returns>
     public static Result Success => _success ??= CreateSuccess();
-
-    /// <summary>
-    /// Combines multiple Result objects into a single Result object.
-    /// </summary>
-    /// <param name="results">The Result objects to combine.</param>
-    /// <returns>A single Result object containing the combined data.</returns>
-    public static Result Merge(params Result[] results)
-    {
-        var data = Combine(results);
-        var result = new Result(data.Succeed, data.Status, data.Message, data.Errors, data.ExtraData);
-        return result;
-    }
 
     /// <summary>
     /// Creates a new Result object with a failure status.
@@ -98,8 +87,27 @@ public sealed class Result(
     public static Result CreateSuccess(in object? status = null, in string? message = null) =>
         new(true, status, message);
 
+    public static Result<TValue> CreateSuccess<TValue>(in TValue value,
+            in object? status = null,
+            in string? message = null,
+            in IEnumerable<(object Id, object Error)>? errors = null,
+            in IEnumerable<(string Id, object Data)>? extraData = null) => 
+        Result<TValue>.CreateSuccess(value, status, message, errors, extraData);
+
     public static explicit operator Result(bool b) =>
-            b ? Success : Failure;
+                b ? Success : Failure;
+
+    /// <summary>
+    /// Combines multiple Result objects into a single Result object.
+    /// </summary>
+    /// <param name="results">The Result objects to combine.</param>
+    /// <returns>A single Result object containing the combined data.</returns>
+    public static Result Merge(params Result[] results)
+    {
+        var data = Combine(results);
+        var result = new Result(data.Succeed, data.Status, data.Message, data.Errors, data.ExtraData);
+        return result;
+    }
 
     /// <summary>
     /// Creates a new empty Result object.
