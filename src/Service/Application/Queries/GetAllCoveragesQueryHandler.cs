@@ -9,7 +9,7 @@ using Service.Infrastructure.Bcl.Results;
 
 namespace Service.Application.Queries;
 
-public sealed class GetAllCoveragesQueryHandler(InsurancePremiumsReadDbContext readDbContext, CancellationToken cancellationToken = default) : IQueryHandler<GetAllCoveragesQueryParams, GetAllCoveragesQueryResult>
+internal sealed class GetAllCoveragesQueryHandler(InsurancePremiumsReadDbContext readDbContext, CancellationToken cancellationToken = default) : IQueryHandler<GetAllCoveragesQueryParams, GetAllCoveragesQueryResult>
 {
     public async Task<GetAllCoveragesQueryResult> HandleAsync(GetAllCoveragesQueryParams query)
     {

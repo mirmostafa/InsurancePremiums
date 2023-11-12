@@ -1,5 +1,4 @@
-﻿using Infrastructure.Bcl.Results;
-using Infrastructure.Cqrs.Models.Queries;
+﻿using Infrastructure.Cqrs.Models.Queries;
 
 namespace Service.Domain.Dtos;
 
