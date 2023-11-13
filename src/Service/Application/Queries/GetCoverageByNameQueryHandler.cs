@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Service.Application.DataSources;
 using Service.Application.Internals;
+using Service.Domain.Dtos;
 using Service.Domain.Entities;
 using Service.Infrastructure.Bcl.Results;
 using Service.Infrastructure.Exceptions;

@@ -3,8 +3,9 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-using Infrastructure.Bcl.Helpers;
 using Infrastructure.Bcl.Results;
+
+using Service.Infrastructure.Bcl.Helpers;
 
 namespace Infrastructure.Bcl.Validations;
 
