@@ -8,15 +8,24 @@
 	<PropertyGroup>
 		<InvariantGlobalization>false</InvariantGlobalization>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Application\Repositories\**" />
+	  <Compile Remove="Application\Services\**" />
+	  <Compile Remove="Domain\Services\**" />
+	  <Compile Remove="Infrastructure\Interfaces\**" />
+	  <EmbeddedResource Remove="Application\Repositories\**" />
+	  <EmbeddedResource Remove="Application\Services\**" />
+	  <EmbeddedResource Remove="Domain\Services\**" />
+	  <EmbeddedResource Remove="Infrastructure\Interfaces\**" />
+	  <None Remove="Application\Repositories\**" />
+	  <None Remove="Application\Services\**" />
+	  <None Remove="Domain\Services\**" />
+	  <None Remove="Infrastructure\Interfaces\**" />
+	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="Application\Commands\" />
-    <Folder Include="Application\Interfaces\" />
-    <Folder Include="Application\Services\" />
-    <Folder Include="Domain\Entities\" />
-    <Folder Include="Domain\Services\" />
-    <Folder Include="Infrastructure\Interfaces\" />
-    <Folder Include="Application\Repositories\" />
+    <Folder Include="Domain\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>

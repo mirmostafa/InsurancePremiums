@@ -1,5 +1,3 @@
-﻿namespace Service.Domain.Dtos;
+﻿namespace Service.Domain.Entities;
 
-public sealed record CoverageDto(string Name, decimal Rate, Guid Id)
-{
-}
+public sealed record CoverageDto(string Name, decimal Rate, Guid Id);
