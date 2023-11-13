@@ -3,11 +3,10 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-using Infrastructure.Bcl.Results;
-
 using Service.Infrastructure.Bcl.Helpers;
+using Service.Infrastructure.Bcl.Results;
 
-namespace Infrastructure.Bcl.Validations;
+namespace Service.Infrastructure.Bcl.Validations;
 
 [Browsable(false)]
 [EditorBrowsable(EditorBrowsableState.Never)]

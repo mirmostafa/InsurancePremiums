@@ -10,19 +10,19 @@ using Service.Infrastructure.Exceptions;
 
 namespace Service.Application.Queries;
 
-internal sealed class GetCoverageByNameQueryHandler(InsurancePremiumsReadDbContext readDbContext, CancellationToken cancellationToken = default) : IQueryHandler<GetCoverageByNameQuery, GetCoverageByNameQueryResult>
+internal sealed class GetInvestmentRequestByIdQueryHandler(InsurancePremiumsReadDbContext readDbContext, CancellationToken cancellationToken = default) : IQueryHandler<GetCoverageByIdQuery, GetCoverageByIdQueryResult>
 {
-    public async Task<GetCoverageByNameQueryResult> HandleAsync(GetCoverageByNameQuery query)
+    public async Task<GetCoverageByIdQueryResult> HandleAsync(GetCoverageByIdQuery query)
     {
         var dbQuery = from coverage in readDbContext.Coverages
-                      where coverage.Name == query.Name
+                      where coverage.Id == query.Id
                       select coverage;
         var dbResult = await dbQuery.FirstOrDefaultAsync(cancellationToken);
         if (dbResult == null)
         {
-            return new(Result<CoverageDto>.CreateFailure(new NoItemFoundException("No coverage found with the specific name.")));
+            return new(Result<CoverageDto>.CreateFailure(new NoItemFoundException("No request found with the specific Id.")));
         }
         var result = dbResult.ToDto();
-        return new(Result.CreateSuccess(result));
+        return new(Result.CreateSuccess(result)!);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Exceptions;
+﻿namespace Service.Infrastructure.Exceptions;
 
 public sealed class NullValueValidationException : ValidationExceptionBase
 {

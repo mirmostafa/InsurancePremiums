@@ -1,6 +1,6 @@
-﻿using Infrastructure.Cqrs.Models.Commands;
+﻿using Service.Infrastructure.Cqrs.Models.Commands;
 
-namespace Infrastructure.Cqrs.Engine.Command;
+namespace Service.Infrastructure.Cqrs.Engine.Command;
 
 public sealed class ValidationCommandHandlerDecorator<TCommand, TResult> : ICommandHandler<TCommand, TResult>
     where TCommand : ICommand

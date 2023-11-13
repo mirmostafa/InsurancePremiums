@@ -2,12 +2,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
-using Infrastructure.Bcl.Results;
 using Infrastructure.Exceptions;
 
 using Service.Infrastructure.Bcl.Results;
+using Service.Infrastructure.Exceptions;
 
-namespace Infrastructure.Bcl.Helpers;
+namespace Service.Infrastructure.Bcl.Helpers;
 
 [DebuggerStepThrough]
 [StackTraceHidden]

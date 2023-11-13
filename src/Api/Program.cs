@@ -1,11 +1,11 @@
-using Api.Controllers;
-
 using Autofac;
 
-using Microsoft.AspNetCore.Diagnostics;
+using Infrastructure.Bcl.Helpers;
 
 using Service;
+using Service.Domain.Dtos;
 using Service.Infrastructure.Cqrs;
+using Service.Infrastructure.Cqrs.Models.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +13,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//builder.Services.AddApplicationServices();
+
 var containerBuilder = new ContainerBuilder();
 containerBuilder.AddCqrs(typeof(Service.Startup).Assembly);
 containerBuilder.AddApplicationServices();
 var container = containerBuilder.Build();
 
 var app = builder.Build();
-CoverageAPIs.MapApis(app, container);
+
+app.MapGet("/ip/coverage", async () =>
+{
+    using var scope = container.BeginLifetimeScope();
+    var queryProcessor = scope.Resolve<IQueryProcessor>();
+    var result = await queryProcessor.ExecuteAsync(new GetAllCoveragesQueryParams());
+    return result.Coverages.ThrowOnFail().GetValue();
+});
+app.MapGet("/ip/coverage/{id:int}", (int id) => "Hello World!");
 
 if (app.Environment.IsDevelopment())
 {
@@ -30,25 +40,4 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseExceptionHandler(errorApp =>
-{
-    errorApp.Run(async context =>
-    {
-        context.Response.StatusCode = 500;
-        context.Response.ContentType = "text/plain";
-
-        var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
-        if (errorFeature != null)
-        {
-            var error = errorFeature.Error;
-            await context.Response.WriteAsync($"Error: {error.Message}");
-        }
-        else
-        {
-            await context.Response.WriteAsync("An error occurred.");
-        }
-    });
-});
-
 app.Run();

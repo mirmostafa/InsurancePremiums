@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Cqrs.Models.Commands;
+﻿namespace Service.Infrastructure.Cqrs.Models.Commands;
 
 public interface ICommandValidator<in TCommand>
     where TCommand : ICommand

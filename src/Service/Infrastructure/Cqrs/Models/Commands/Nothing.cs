@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Cqrs.Models.Commands;
+﻿namespace Service.Infrastructure.Cqrs.Models.Commands;
 
 public sealed class Nothing
 {

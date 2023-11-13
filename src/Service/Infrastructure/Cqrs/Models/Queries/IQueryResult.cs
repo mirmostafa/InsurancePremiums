@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Cqrs.Models.Queries;
+﻿namespace Service.Infrastructure.Cqrs.Models.Queries;
 
 public interface IQueryResult
 {

@@ -5,12 +5,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-using Infrastructure.Bcl.Helpers;
-using Infrastructure.Bcl.Results;
-using Infrastructure.Bcl.Validations;
 using Infrastructure.Exceptions;
 
-namespace Infrastructure.Bcl.Validations;
+using Service.Infrastructure.Bcl.Helpers;
+using Service.Infrastructure.Bcl.Results;
+using Service.Infrastructure.Bcl.Validations;
+
+namespace Service.Infrastructure.Bcl.Validations;
 
 [DebuggerStepThrough]
 [StackTraceHidden]

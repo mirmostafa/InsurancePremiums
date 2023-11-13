@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Bcl.Results;
+﻿namespace Service.Infrastructure.Bcl.Results;
 
 public sealed class TryMethodResult
     : ResultBase

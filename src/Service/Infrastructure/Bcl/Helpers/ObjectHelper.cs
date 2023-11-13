@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Infrastructure.Bcl.Helpers;
+namespace Service.Infrastructure.Bcl.Helpers;
 
 public static class ObjectHelper
 {

@@ -2,11 +2,10 @@
 
 using Autofac;
 
-using Infrastructure.Cqrs.Engine.Command;
-using Infrastructure.Cqrs.Models.Commands;
-using Infrastructure.Cqrs.Models.Queries;
-
+using Service.Infrastructure.Cqrs.Engine.Command;
 using Service.Infrastructure.Cqrs.Engine.Query;
+using Service.Infrastructure.Cqrs.Models.Commands;
+using Service.Infrastructure.Cqrs.Models.Queries;
 
 namespace Service.Infrastructure.Cqrs;
 
