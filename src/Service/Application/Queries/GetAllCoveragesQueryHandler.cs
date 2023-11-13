@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Service.Application.DataSources;
 using Service.Application.Internals;
 using Service.Domain.Entities;
+using Service.Infrastructure.Bcl.Helpers;
 using Service.Infrastructure.Bcl.Results;
 
 namespace Service.Application.Queries;
@@ -16,7 +17,7 @@ internal sealed class GetAllCoveragesQueryHandler(InsurancePremiumsReadDbContext
         var dbQuery = from coverage in readDbContext.Coverages
                       select coverage;
         var dbResult = await dbQuery.ToListAsync(cancellationToken);
-        var result = dbResult.ToDto();
+        var result = dbResult.ToDto().Compact();
         return new(Result.CreateSuccess(result));
     }
 }

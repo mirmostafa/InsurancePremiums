@@ -4,6 +4,8 @@ using System.Text;
 using Infrastructure.Bcl.Helpers;
 using Infrastructure.Bcl.Validations;
 
+using Service.Infrastructure.Bcl.Helpers;
+
 namespace Infrastructure.Bcl.Results;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]

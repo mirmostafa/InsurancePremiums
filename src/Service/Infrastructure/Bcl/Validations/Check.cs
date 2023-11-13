@@ -7,6 +7,7 @@ using Infrastructure.Bcl.Helpers;
 using Infrastructure.Bcl.Results;
 using Infrastructure.Exceptions;
 
+using Service.Infrastructure.Bcl.Helpers;
 using Service.Infrastructure.Bcl.Results;
 
 using ValidationException = Infrastructure.Exceptions.ValidationException;

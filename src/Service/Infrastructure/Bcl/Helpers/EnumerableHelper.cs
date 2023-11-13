@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Bcl.Helpers;
+namespace Service.Infrastructure.Bcl.Helpers;
 
 public static class EnumerableHelper
 {
@@ -47,6 +48,16 @@ public static class EnumerableHelper
             ICollection collection => collection.Count > 0, // If the enumerable is an ICollection, check its Count property.
             _ => source.GetEnumerator().MoveNext() // Use enumerator to check if any elements exist.
         };
+
+    /// <summary>
+    /// Returns an IEnumerable of non-null elements from the given IEnumerable of nullable elements.
+    /// </summary>
+    [return: NotNull]
+    public static IEnumerable<TSource> Compact<TSource>(this IEnumerable<TSource?>? items) where TSource : class =>
+        items?
+             .Where([DebuggerStepThrough] (x) => x is not null)
+             .Select([DebuggerStepThrough] (x) => x!)
+        ?? Enumerable.Empty<TSource>();
 
     /// <summary>
     /// Creates an IEnumerable from a given IEnumerable.

@@ -3,17 +3,15 @@ using System.Collections.Generic;
 
 namespace Service.Application.DataSources;
 
-public partial class Coverage
+public partial class InvestmentRequest
 {
     public Guid Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public Guid UserId { get; set; }
 
-    public decimal Rate { get; set; }
+    public string Title { get; set; } = null!;
 
-    public long? InvestmentMin { get; set; }
-
-    public long? InvestmentMax { get; set; }
+    public DateTime CreateDate { get; set; }
 
     public virtual ICollection<InvestmentValue> InvestmentValues { get; set; } = new List<InvestmentValue>();
 }

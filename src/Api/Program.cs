@@ -13,8 +13,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddApplicationServices();
-
 var containerBuilder = new ContainerBuilder();
 containerBuilder.AddCqrs(typeof(Service.Startup).Assembly);
 containerBuilder.AddApplicationServices();

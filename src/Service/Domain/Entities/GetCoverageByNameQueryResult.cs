@@ -1,5 +1,7 @@
 ﻿using Infrastructure.Bcl.Results;
 
+using Service.Domain.Dtos;
+
 namespace Service.Domain.Entities;
 
 public class GetCoverageByNameQueryResult(Result<CoverageDto?> result)
