@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Application\Commands\" />
+    <Folder Include="Domain\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -34,6 +34,10 @@ public static class ValidationExtensions
     /// <summary>
     /// Adds a rule to the ValidationResultSet to check if the value is not null.
     /// </summary>
+    [DebuggerStepThrough]
+    [StackTraceHidden]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NotNull]
     [MemberNotNull(nameof(ValidationResultSet<TValue>.Value))]
     public static ValidationResultSet<TValue> ArgumentNotNull<TValue>(this ValidationResultSet<TValue> vrs, Func<Exception> onError = null) =>
         vrs.InnerAddRule(x => x, _ => vrs.Value is not null, onError, () => new ArgumentNullException(vrs._valueName));

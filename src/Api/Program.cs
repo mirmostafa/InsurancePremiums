@@ -2,13 +2,9 @@ using Api.Controllers;
 
 using Autofac;
 
-using Infrastructure.Bcl.Helpers;
-using Infrastructure.Cqrs.Models.Queries;
-
 using Microsoft.AspNetCore.Diagnostics;
 
 using Service;
-using Service.Domain.Dtos;
 using Service.Infrastructure.Cqrs;
 
 var builder = WebApplication.CreateBuilder(args);

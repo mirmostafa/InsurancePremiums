@@ -3,7 +3,7 @@
 using Infrastructure.Bcl.Helpers;
 using Infrastructure.Cqrs.Models.Queries;
 
-using Service.Domain.Dtos;
+using Service.Domain.Entities;
 
 namespace Api.Controllers;
 
@@ -16,6 +16,14 @@ public static class CoverageAPIs
             using var scope = container.BeginLifetimeScope();
             var queryProcessor = scope.Resolve<IQueryProcessor>();
             var result = await queryProcessor.ExecuteAsync(new GetAllCoveragesQueryParams());
+            return result.Result.ThrowOnFail().GetValue();
+        });
+
+        _ = app.MapGet("/ip/coverage/{id:guid}", async (Guid id) =>
+        {
+            using var scope = container.BeginLifetimeScope();
+            var queryProcessor = scope.Resolve<IQueryProcessor>();
+            var result = await queryProcessor.ExecuteAsync(new GetCoverageByIdQueryParams(id));
             return result.Result.ThrowOnFail().GetValue();
         });
         _ = app.MapGet("/ip/coverage/{name}", async (string name) =>
