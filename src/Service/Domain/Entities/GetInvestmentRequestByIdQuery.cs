@@ -3,7 +3,8 @@ using Service.Infrastructure.Cqrs.Models.Queries;
 
 namespace Service.Domain.Entities;
 
-public sealed class GetInvestmentRequestByIdQuery(Guid id) : IQuery<GetInvestmentRequestByIdQueryResult>
+public sealed class GetInvestmentRequestByIdQuery(Guid userId, Guid requestId) : IQuery<GetInvestmentRequestByIdQueryResult>
 {
-    public Guid Id { get; } = id.ArgumentNotNull();
+    public Guid RequestId { get; } = requestId.ArgumentNotNull();
+    public Guid UserId { get; } = userId;
 }

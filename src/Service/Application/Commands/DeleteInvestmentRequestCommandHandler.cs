@@ -10,7 +10,7 @@ internal sealed class DeleteInvestmentRequestCommandHandler(IQueryProcessor quer
 {
     public async Task<DeleteInvestmentRequestCommandResult> HandleAsync(DeleteInvestmentRequestCommand command)
     {
-        var requestQueryResult = await queryProcessor.ExecuteAsync(new GetInvestmentRequestByIdQuery(command.RequestId));
+        var requestQueryResult = await queryProcessor.ExecuteAsync(new GetInvestmentRequestByIdQuery(Guid.Empty, command.RequestId));
         if (requestQueryResult.Result.IsFailure)
         {
             return new(requestQueryResult.Result);

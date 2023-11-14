@@ -2,7 +2,7 @@
 
 namespace Service.Domain.Entities;
 
-public sealed class CalculateInsuranceCostQuery : IQuery<CalculateInsuranceCostQueryResult>
+public sealed class CalculateInsuranceCostQuery(Guid requestId) : IQuery<CalculateInsuranceCostQueryResult>
 {
-    public Guid RequestId { get; }
+    public Guid RequestId { get; } = requestId;
 }

@@ -1,11 +1,9 @@
+using Api.Controllers;
+
 using Autofac;
 
-using Infrastructure.Bcl.Helpers;
-
 using Service;
-using Service.Domain.Dtos;
 using Service.Infrastructure.Cqrs;
-using Service.Infrastructure.Cqrs.Models.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,14 +20,7 @@ var container = containerBuilder.Build();
 
 var app = builder.Build();
 
-app.MapGet("/ip/coverage", async () =>
-{
-    using var scope = container.BeginLifetimeScope();
-    var queryProcessor = scope.Resolve<IQueryProcessor>();
-    var result = await queryProcessor.ExecuteAsync(new GetAllCoveragesQueryParams());
-    return result.Coverages.ThrowOnFail().GetValue();
-});
-app.MapGet("/ip/coverage/{id:int}", (int id) => "Hello World!");
+CoverageAPIs.MapApis(app, container);
 
 if (app.Environment.IsDevelopment())
 {

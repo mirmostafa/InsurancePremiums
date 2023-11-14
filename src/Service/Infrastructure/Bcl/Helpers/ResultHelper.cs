@@ -2,8 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
-using Infrastructure.Exceptions;
-
 using Service.Infrastructure.Bcl.Results;
 using Service.Infrastructure.Exceptions;
 

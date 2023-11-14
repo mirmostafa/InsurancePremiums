@@ -86,6 +86,15 @@ public static class CoverageAPIs
             var result = await commandProcessor.ExecuteAsync<DeleteInvestmentRequestCommand, DeleteInvestmentRequestCommandResult>(cmdParams);
             return result.Result.ThrowOnFail();
         });
+
+        _ = app.MapGet("/ip/coverage/request/cost", async (Guid id) =>
+        {
+            using var scope = container.BeginLifetimeScope();
+            var queryProcessor = scope.Resolve<IQueryProcessor>();
+            var result = await queryProcessor.ExecuteAsync(new CalculateInsuranceCostQuery(id));
+            return result.Result.ThrowOnFail().GetValue();
+        });
+
         return app;
     }
 }
@@ -96,7 +105,7 @@ public sealed class CoverageInvestRequest
     public Guid? Coverage2Id { get; set; }
     public Guid? Coverage3Id { get; set; }
 
-    public string? Title { get; set; }
+    public string Title { get; set; }
     public decimal Value1 { get; set; }
     public decimal? Value2 { get; set; }
     public decimal? Value3 { get; set; }

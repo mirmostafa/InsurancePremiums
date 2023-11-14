@@ -1,8 +1,9 @@
-﻿using Service.Infrastructure.Bcl.Results;
+﻿using Service.Domain.ValueObjects;
+using Service.Infrastructure.Bcl.Results;
 
 namespace Service.Domain.Entities;
 
-public sealed class GetCoverageRateByCoverageIdResult(Result<decimal> result)
+public sealed class GetCoverageRateByCoverageIdResult(Result<Rate> result)
 {
-    public Result<decimal> Result { get; } = result;
+    public Result<Rate> Result { get; } = result;
 }
