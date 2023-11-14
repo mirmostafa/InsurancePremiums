@@ -1,7 +1,5 @@
 ﻿using System.Numerics;
 
-using Infrastructure.Bcl.Results;
-
 namespace Service.Infrastructure.Bcl.Results;
 
 public sealed class Result(

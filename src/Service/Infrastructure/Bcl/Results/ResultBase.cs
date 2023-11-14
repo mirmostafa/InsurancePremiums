@@ -1,12 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-using Infrastructure.Bcl.Helpers;
-using Infrastructure.Bcl.Validations;
-
 using Service.Infrastructure.Bcl.Helpers;
+using Service.Infrastructure.Bcl.Validations;
 
-namespace Infrastructure.Bcl.Results;
+namespace Service.Infrastructure.Bcl.Results;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public abstract class ResultBase(

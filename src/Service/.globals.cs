@@ -1,1 +1,1 @@
-﻿global using Checker = Infrastructure.Bcl.Validations.Check;
+﻿global using Checker = Service.Infrastructure.Bcl.Validations.Check;

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-using Infrastructure.Bcl.Validations;
+using Service.Infrastructure.Bcl.Validations;
 
 namespace Service.Domain.ValueObjects;
 

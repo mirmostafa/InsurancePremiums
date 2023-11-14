@@ -1,3 +1,9 @@
-﻿namespace Service.Domain.Dtos;
+﻿using Service.Domain.ValueObjects;
 
-public sealed record CoverageDto(string Name, decimal Rate, Guid Id, long? InvestmentMin, long? InvestmentMax);
+namespace Service.Domain.Dtos;
+
+public sealed record CoverageDto(Guid Id, string Name, Rate Rate, long? InvestmentMin, long? InvestmentMax);
+
+public sealed record InvestmentRequestDto(Guid Id, string Title, DateTime CreateDate, IEnumerable<InvestmentValueDto> Values);
+
+public sealed record InvestmentValueDto(Guid Id, Guid RequestId, Guid CoverageId, decimal Value);

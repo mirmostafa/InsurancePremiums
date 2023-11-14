@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Exceptions;
+namespace Service.Infrastructure.Exceptions;
 
 public sealed class BreakException : ExceptionBase
 {

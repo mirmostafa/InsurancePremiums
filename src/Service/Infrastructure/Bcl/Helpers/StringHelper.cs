@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
-namespace Infrastructure.Bcl.Helpers;
+namespace Service.Infrastructure.Bcl.Helpers;
 
 public static class StringHelper
 {

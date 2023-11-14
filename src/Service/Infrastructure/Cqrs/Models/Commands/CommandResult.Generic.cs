@@ -1,6 +1,4 @@
-﻿using Service.Infrastructure.Cqrs.Models.Commands;
-
-namespace Infrastructure.Cqrs.Models.Commands;
+﻿namespace Service.Infrastructure.Cqrs.Models.Commands;
 
 public sealed class CommandResult<T> : CommandResult
 {

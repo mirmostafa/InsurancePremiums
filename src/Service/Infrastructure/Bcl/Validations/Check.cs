@@ -3,32 +3,30 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-using Infrastructure.Bcl.Helpers;
-using Infrastructure.Bcl.Results;
-using Infrastructure.Exceptions;
-
 using Service.Infrastructure.Bcl.Helpers;
 using Service.Infrastructure.Bcl.Results;
+using Service.Infrastructure.Bcl.Validations;
+using Service.Infrastructure.Exceptions;
 
-using ValidationException = Infrastructure.Exceptions.ValidationException;
+using ValidationException = Service.Infrastructure.Exceptions.ValidationException;
 
-namespace Infrastructure.Bcl.Validations;
+namespace Service.Infrastructure.Bcl.Validations;
 
 [DebuggerStepThrough]
 [StackTraceHidden]
 public sealed class Check
 {
-    private static Check? _that;
+    private static Checker? _that;
 
     private Check()
     { }
 
-    /// <summary> Gets the singleton instance of the <see cref="Check"/> functionality. </summary>
+    /// <summary> Gets the singleton instance of the <see cref="Checker"/> functionality. </summary>
     /// <remarks> Users can use this to plug-in custom assertions through C# extension methods. For
     /// instance, the signature of a custom assertion provider could be "public static void
     /// IsOfType<T>(this Assert assert, object obj)" Users could then use a syntax similar to the
     /// default assertions which in this case is "Assert.That.IsOfType<Dog>(animal);" </remarks>
-    public static Check That => _that ??= new();
+    public static Checker That => _that ??= new();
 
     public static Result If(in bool notOk, in Func<string> getErrorMessage) =>
         notOk ? Result.CreateFailure(message: getErrorMessage()) : Result.CreateSuccess();

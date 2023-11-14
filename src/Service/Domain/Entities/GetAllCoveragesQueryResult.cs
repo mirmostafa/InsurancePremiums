@@ -1,6 +1,5 @@
-﻿using Infrastructure.Bcl.Results;
-
-using Service.Domain.Dtos;
+﻿using Service.Domain.Dtos;
+using Service.Infrastructure.Bcl.Results;
 
 namespace Service.Domain.Entities;
 

@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-using Infrastructure.Cqrs.Models.Queries;
+using Service.Infrastructure.Cqrs.Models.Queries;
 
 namespace Service.Infrastructure.Cqrs.Engine.Query;
 

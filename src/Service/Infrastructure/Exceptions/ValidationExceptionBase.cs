@@ -1,5 +1,4 @@
-﻿
-namespace Infrastructure.Exceptions;
+﻿namespace Service.Infrastructure.Exceptions;
 
 public abstract class ValidationExceptionBase : ExceptionBase
 {

@@ -2,7 +2,7 @@
 
 namespace Service.Domain.Entities;
 
-public sealed class InsertInvestOnCoverageCommandResult(Result result)
+public sealed class InsertInvestmentRequestCommandResult(Result result)
 {
     public Result Result { get; } = result;
 }

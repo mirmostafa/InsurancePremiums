@@ -2,12 +2,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
-using Infrastructure.Bcl.Validations;
-
-using Service.Infrastructure.Bcl.Results;
+using Service.Infrastructure.Bcl.Validations;
 
 
-namespace Infrastructure.Bcl.Results;
+namespace Service.Infrastructure.Bcl.Results;
 
 /// <summary>
 /// Represents a result that encapsulates a value along with success status, status, message,

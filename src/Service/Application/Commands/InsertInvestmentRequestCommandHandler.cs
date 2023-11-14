@@ -1,22 +1,25 @@
-﻿using Infrastructure.Bcl.Helpers;
-using Infrastructure.Bcl.Validations;
-using Infrastructure.Cqrs.Models.Commands;
-using Infrastructure.Cqrs.Models.Queries;
-
-using Service.Application.DataSources;
+﻿using Service.Application.DataSources;
 using Service.Domain.Entities;
 using Service.Domain.ValueObjects;
+using Service.Infrastructure.Bcl.Helpers;
 using Service.Infrastructure.Bcl.Results;
+using Service.Infrastructure.Bcl.Validations;
+using Service.Infrastructure.Cqrs.Models.Commands;
+using Service.Infrastructure.Cqrs.Models.Queries;
 
 namespace Service.Application.Commands;
 
-internal sealed class InsertInvestOnCoverageCommandHandler(IQueryProcessor queryProcessor, InsurancePremiumsWriteDbContext dbContext, CancellationToken cancellationToken = default) : ICommandHandler<InsertInvestOnCoverageCommandParams, InsertInvestOnCoverageCommandResult>
+internal sealed class InsertInvestmentRequestCommandHandler(IQueryProcessor queryProcessor, InsurancePremiumsWriteDbContext dbContext, CancellationToken cancellationToken = default) : ICommandHandler<InsertInvestmentRequestCommand, InsertInvestmentRequestCommandResult>
 {
-    public async Task<InsertInvestOnCoverageCommandResult> HandleAsync(InsertInvestOnCoverageCommandParams command)
+    public async Task<InsertInvestmentRequestCommandResult> HandleAsync(InsertInvestmentRequestCommand command)
     {
         await validate();
         var request = await createRequest();
-        await createValuesOnRequest(request);
+        var r1 = await createValuesOnRequest(request);
+        if (r1.IsFailure)
+        {
+            return new(r1);
+        }
         var result = await saveResult();
         return new(result);
 
@@ -37,12 +40,17 @@ internal sealed class InsertInvestOnCoverageCommandHandler(IQueryProcessor query
             _ = dbContext.InvestmentRequests.Add(request);
             return Task.FromResult(request);
         }
-        async Task createValuesOnRequest(InvestmentRequest request)
+        async Task<Result> createValuesOnRequest(InvestmentRequest request)
         {
             var data = new List<(Guid coverageId, decimal value)>();
             foreach (var investment in command.Investments)
             {
-                data.Add(await processCoverageInvestmentAsync(investment));
+                var item = await processCoverageInvestmentAsync(investment);
+                if (item?.IsFailure ?? true)
+                {
+                    return item ?? Result.Failure;
+                }
+                data.Add(item);
             }
             foreach (var investment in data)
             {
@@ -54,18 +62,23 @@ internal sealed class InsertInvestOnCoverageCommandHandler(IQueryProcessor query
                 };
                 _ = dbContext.InvestmentValues.Add(value);
             }
+            return Result.Success;
 
-            async Task<(Guid CoverageId, decimal Investment)> processCoverageInvestmentAsync(CoverageInvestment investment)
+            async Task<Result<(Guid CoverageId, decimal Investment)>?> processCoverageInvestmentAsync(CoverageInvestment investment)
             {
                 if (investment == CoverageInvestment.Default || investment is null)
                 {
                     return default;
                 }
                 (var coverageId, var value) = investment;
-                var coverageQuery = await queryProcessor.ExecuteAsync(new GetCoverageByIdQueryParams(coverageId));
-                var coverage = coverageQuery.Result.ThrowOnFail().GetValue()!;
+                var coverageQuery = await queryProcessor.ExecuteAsync(new GetCoverageByIdQuery(coverageId));
+                if (coverageQuery.Result.IsFailure)
+                {
+                    return coverageQuery.Result.WithValue<(Guid, decimal)>(default);
+                }
+                var coverage = coverageQuery.Result.GetValue()!;
                 Check.MustBe(value >= coverage.InvestmentMin && value <= coverage.InvestmentMax, () => "Investment value is out of range");
-                return (coverageId, value);
+                return Result.CreateSuccess((coverageId, value));
             }
         }
         async Task<Result> saveResult()

@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Bcl.Helpers;
+namespace Service.Infrastructure.Bcl.Helpers;
 public static class CodeHelper
 {
     public static TInstance With<TInstance>(this TInstance instance, Action<TInstance> action)

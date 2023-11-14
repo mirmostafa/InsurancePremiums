@@ -1,6 +1,4 @@
-﻿using Infrastructure.Exceptions;
-
-namespace Service.Infrastructure.Exceptions;
+﻿namespace Service.Infrastructure.Exceptions;
 
 public sealed class NoItemFoundException : DetailedException
 {
